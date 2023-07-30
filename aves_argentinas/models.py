@@ -9,7 +9,7 @@ class Aves(models.Model):
     nombre = models.CharField(max_length=200)
     caracteristicas = models.TextField()
     ultima_observacion = models.DateField()
-    foto = models.ImageField(upload_to='bird_photos/', blank = True, null = True)
+    #foto = models.ImageField(upload_to='bird_photos/', blank = True, null = True)
     
     def __str__(self):
         return f"{self.nombre} - {self.especie}"
