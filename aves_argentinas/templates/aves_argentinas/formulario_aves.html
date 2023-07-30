@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+Publicar Ave
+{% endblock titulo %}
+
+{% block contenido %}
+<h3>Publicar sobre un Ave</h3>
+<br></br>
+<form method = 'post'>
+    {% csrf_token %}
+    {{ formulario.as_p }} 
+    {{ formulario.errors }}
+    <input type="submit" class = "btn btn-success" value="Publicar" />
+</form>
+<br></br>
+<a href="{% url 'lista_aves' %}">Volver a lista de aves</a>
+
+{% endblock contenido %}

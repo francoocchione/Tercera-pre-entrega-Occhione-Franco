@@ -1,0 +1,64 @@
+{% extends "base.html" %} 
+{% block titulo %} 
+La Flora
+{% endblock titulo %}
+
+{% block contenido %} <!-- Django agarra este bloque contenido y lo coloca donde colocamos este bloque en base.html (dejando nav y footer fijos)-->
+
+<div class="entry-container">
+  <header class="header" >
+      <img src="/static/assets/ceibo.png" alt="Flora" width = "500" height="300">
+  </header>
+</div>
+
+<br></br>
+
+<h1>La Flora</h1>
+<div class= "entry-content">
+    <p>En esta seccion el visitante podra observar la flora silvestre
+        en la Reserva ecologica costanera sur</p>
+</div>
+
+<form action = "{% url 'buscar_flora' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="busqueda">
+    <input type="submit" value="Buscar por nombre">
+  </form>
+  <a href="{% url 'lista_flora' %}">Ver lista completa</a>
+  <br></br>
+<table class= "table">
+    <tbody>
+        <tr>
+            <!--<th>ID</th>-->
+            <th>Nombre</th>
+            <th>Especie</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for flora in floras %}
+        <tr>
+            <!--<td>{{ ave.id }}</td>-->
+            <td>{{ flora.nombre }}</td>
+            <td>{{ flora.especie }}</td>
+            <td>
+                <a class= "btn btn-info" href="{% url 'ver_flora' flora.id %}">Informacion</a>
+            </td>
+            <td>
+                <a href="{% url 'editar_flora' flora.id %}">Editar</a>
+            </td>
+            <td>
+                <form action = "{% url 'eliminar_flora' flora.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" class= "btn btn-danger" value="eliminar" />
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<a class= "btn btn-primary" href="{% url 'crear_flora' %}">Publicar Flora</a>
+
+{% endblock contenido %}

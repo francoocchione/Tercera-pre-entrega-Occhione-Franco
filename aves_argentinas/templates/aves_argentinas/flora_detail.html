@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+<p>
+ <strong>Nombre:</strong> {{object.nombre}}
+</p>
+<p>
+ <strong>Especie:</strong> {{object.especie}}
+</p>
+<p>
+ <strong>Tipo:</strong> {{object.tipo}}
+</p>
+<p>
+ <strong>Caracteristicas fisicas:</strong> {{object.caracteristicas}}
+</p>
+
+<br>
+<a href="{% url 'lista_flora' %}">Volver a la lista</a>
+
+{% endblock contenido %}
